@@ -9,19 +9,30 @@ printf ("\n");
 void main ()
 {
 int i[6] = {5,4,1,2,3,6};
-int j, temp;
+int j, temp, k;
 printi(i,6);
 for (j=0;j<5;j++)
     {
-    printf ("\n before %d %d \n", i[j], i[j+1]);
-    if (i[j] > i[j+1])
+    k=j+1;
+    //printf ("\n before %d %d \n", i[k], i[k-1]);
+    while (k>0)
         {
-        temp=i[j];
-        printf ("temp is %d", temp);
-        i[j]=i[j+1];
-        i[j+1]=temp;
+        printf ("##############in while loop %d with %d %d\n", k, i[k], i[k-1]);
+        if (i[k] < i[k-1])
+            {
+            printf ("\n $$$$$$$$$came to switch before \n");
+            printi(i,6);
+            temp=i[k];
+            printf ("temp is %d", temp);
+            i[k]=i[k-1];
+            i[k-1]=temp;
+            printf ("\n after \n");
+            printi(i,6);
+            }
+        k--;
+        printf ("end of while %d\n", k);
         }
-    printf ("\n after %d %d \n", i[j], i[j+1]);
+    printf ("@@@@@@@@@@@@ done with while loop with j %d\n", j);
     }
 printi(i,6);
 }
