@@ -17,22 +17,14 @@ for (j=0;j<5;j++)
     //printf ("\n before %d %d \n", i[k], i[k-1]);
     while (k>0)
         {
-        printf ("##############in while loop %d with %d %d\n", k, i[k], i[k-1]);
         if (i[k] < i[k-1])
             {
-            printf ("\n $$$$$$$$$came to switch before \n");
-            printi(i,6);
             temp=i[k];
-            printf ("temp is %d", temp);
             i[k]=i[k-1];
             i[k-1]=temp;
-            printf ("\n after \n");
-            printi(i,6);
             }
         k--;
-        printf ("end of while %d\n", k);
         }
-    printf ("@@@@@@@@@@@@ done with while loop with j %d\n", j);
     }
 printi(i,6);
 }
