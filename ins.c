@@ -23,9 +23,9 @@ void main ()
 int i[6] = {5,4,1,2,3,6};
 int j, temp, k;
 printi(i,6);
-for (j=0;j<5;j++)
+for (j=2;j<=6;j++)
     {
-    k=j+1;
+    k=j-1;
     while (k>0)
         {
         if (i[k] < i[k-1])
