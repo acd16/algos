@@ -10,3 +10,4 @@ void initializeList (node ** head, int data);
 void addNode(node **list, int data);
 void printList (node * head);
 void deleteList (node * list);
+int  countList (node * head);
