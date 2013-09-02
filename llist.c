@@ -5,24 +5,64 @@ typedef struct nod
 int member;
 struct nod * next;
 }node;
-void addNode(node * first, node * second, int data)
+
+void initializeList (node ** head, int data)
 {
-head -> member = 5;
-head -> next = sec;
+*head = malloc (sizeof (node));
+(*head)-> member = data;
+(*head)-> next = NULL;
 }
+
+void addNode(node **list, int data)
+{
+node *newNode = NULL;
+newNode = malloc (sizeof (node));
+newNode -> member = data;
+newNode -> next = NULL;
+node **ins = NULL;
+ins = list;
+printf ("%p\n", *ins);
+while (*ins != NULL)
+    {
+    printf ("came in %p\n", *ins);
+    ins = &(*ins) -> next;
+    }
+printf ("Done!!!\n");
+*ins = newNode;
+}
+
+void printList (node * head)
+{
+node * print = head;
+printf ("print start\n");
+while (print != NULL)
+    {
+    printf ("%d ", print->member);
+    print = print -> next;
+    }
+printf ("\nprint done\n");
+}
+
+void deleteList (node * list)
+{
+node * temp=list;
+while (list != NULL)
+    {
+    temp = list -> next;
+    free (list);
+    list = temp;
+    }
+}
+
 void main ()
 {
-node *head = NULL, *sec = NULL, *third = NULL;
-addNode (head, NULL, 5);
-addNode (head, sec, 5);
-addNode (head, third, 5);
-head = malloc (sizeof (node));
-sec = malloc (sizeof (node));
-third = malloc (sizeof (node));
-head -> member = 5;
-head -> next = sec;
-sec -> member = 6;
-sec -> next = third;
-third -> member = 7;
-third -> next = NULL;
+node * head = NULL;
+initializeList (&head, 5);
+addNode(&head, 6);
+addNode(&head, 7);
+addNode(&head, 8);
+addNode(&head, 9);
+printList(head);
+deleteList(head);
+printList(head);
 }
