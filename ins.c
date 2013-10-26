@@ -1,39 +1,56 @@
-//TODO : Add linked lists to get values from stdin
-//       or file.
-
 #include<stdio.h>
-void printi(int i[], int siz)
+#include<stdlib.h>
+#include<string.h>
+#define MAX 10
+struct node{
+    int data;
+    struct node * link;
+};
+typedef struct node * NODE;
+NODE graph[MAX];
+void displayGraph (NODE graph[], int n)
 {
-int j;
-for (j=0;j<siz;j++)
-    printf ("%d ", i[j]);
-printf ("\n");
-}
-
-void swap (int *i, int *j)
-{
-int temp;
-temp = *i;
-*i=*j;
-*j=temp;
-}
-
-void main ()
-{
-int i[6] = {5,4,1,2,3,6};
-int j, temp, k;
-printi(i,6);
-for (j=2;j<=6;j++)
+int i;
+NODE cur;
+for (i=0;i<n;i++)
     {
-    k=j-1;
-    while (k>0)
+    cur = graph[i];
+    while(cur != NULL)
         {
-        if (i[k] < i[k-1])
-            {
-            swap(&i[k], &i[k-1]);
-            }
-        k--;
-        }
+        printf("%d ", cur->data);
+        } 
     }
-printi(i,6);
+}
+
+NODE insert (NODE root, NODE temp){
+NODE mine;
+mine = root;
+    if (mine == NULL)
+        return temp;
+    while(mine != NULL){
+    mine = mine->link;
+    }
+mine->link = temp;
+return root;
+}
+
+main ()
+{
+int n=0;
+int i, j;
+int val;
+char choice[2];
+NODE temp, root;
+printf("Enter the number of nodes\n");
+for (i=0;i<3;i++){
+    root=NULL;
+    for (j=0;j<3;j++){
+	    temp = malloc(sizeof (struct node));
+	    temp->data = val; 
+	    temp->link = NULL;
+	    root = insert(root, temp);
+    }
+graph[i] = root; 
+    }
+displayGraph (graph, n);
 }
