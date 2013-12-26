@@ -81,6 +81,11 @@ return head->member;
 
 void push(node **head, int n)
 {
+node * newNode = NULL;
+newNode = malloc (sizeof(node));
+newNode -> member = n;
+newNode -> next = *head;
+*head = newNode;
 }
 
 void pop(node ** head)
@@ -126,6 +131,18 @@ while (*first != NULL)
     prev = first;
     first = &(*first)->next; 
     }
+}
+
+insertNth()
+{
+}
+
+split()
+{
+}
+
+reverse()
+{
 }
 
 node ** findMatchNode (node ** head, int n)
