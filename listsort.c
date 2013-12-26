@@ -4,12 +4,20 @@ void main ()
 {
 node * head = NULL;
 node * second = NULL;
-printf ("in main ");
+printf ("in main \n");
+pop(&head);
 initializeList (&head, 5);
 addNode(&head, 6);
 addNodeBeg(&head, 7);
 addNode(&head, 8);
 addNode(&head, 9);
+printList(head);
+exchange(&head, 8, 9);
+printList(head);
+/*printList(head);
+pop(&head);
+printf("after pop\n");
+exit(1);
 printList(head);
 deleteMatchNode(&head, 8);
 printList(head);
@@ -22,6 +30,6 @@ printList(head);
 deleteEnd(&head);
 printList(head);
 printf ("4th element is %d\n", getNth(head, 4));
-printf ("\n The count is %d\n", countList(head));
+printf ("\n The count is %d\n", countList(head));*/
 deleteList(head);
 }

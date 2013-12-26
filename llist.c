@@ -79,12 +79,28 @@ for (i=0;i<n-1;i++)
 return head->member;
 }
 
-void pop()
+void push(node **head, int n)
 {
 }
 
-void sort()
+void pop(node ** head)
 {
+node * temp = NULL;
+if (*head == NULL)
+    {
+    printf("empty list \n");
+    return;
+    }
+if ((*head)->next == NULL)
+    {
+    free(*head);
+    *head = NULL;
+    return;
+    }
+temp = *head;
+*head = (*head)->next;
+free(temp);
+temp->next = NULL;
 }
 
 void join(node ** first, node ** second)
@@ -110,6 +126,26 @@ while (*first != NULL)
     prev = first;
     first = &(*first)->next; 
     }
+}
+
+node ** findMatchNode (node ** head, int n)
+{
+while (*head != NULL)
+    {
+    if ((*head)->member == n)
+        return head;
+    head = &(*head)->next;
+    }
+}
+
+void exchange (node ** head, int src, int dst)
+{
+node ** one = NULL;
+node ** two = NULL;
+one = findMatchNode (head, src);
+two = findMatchNode (head, dst);
+(*one)->member = dst;
+(*two)->member = src;
 }
 
 void sortList (node **list)
