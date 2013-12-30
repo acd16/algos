@@ -3,17 +3,25 @@
 void main ()
 {
 node * head = NULL;
+node * first = NULL;
 node * second = NULL;
-printf ("in main \n");
-pop(&head);
 initializeList (&head, 5);
 addNode(&head, 6);
-addNodeBeg(&head, 7);
+addNode(&head, 7);
 addNode(&head, 8);
 addNode(&head, 9);
-push (&head, 4);
+//addNode(&head, 10);
+split (&head, &first, &second);
+printList(head);
+printList(first);
+printList(second);
+reverse(&head);
 printList(head);
 /*printList(head);
+addNodeBeg(&head, 7);
+deleteMatchNode (&head, 6);
+insertNth(&head, 3, 11);
+push (&head, 4);
 exchange(&head, 8, 9);
 printList(head);
 pop(&head);
@@ -33,4 +41,6 @@ printList(head);
 printf ("4th element is %d\n", getNth(head, 4));
 printf ("\n The count is %d\n", countList(head));*/
 deleteList(head);
+deleteList(first);
+deleteList(second);
 }

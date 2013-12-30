@@ -36,13 +36,11 @@ node *newNode = NULL;
 newNode = malloc (sizeof (node));
 newNode -> member = data;
 newNode -> next = NULL;
-node **ins = NULL;
-ins = list;
-while (*ins != NULL)
+while (*list != NULL)
     {
-    ins = &((*ins) -> next);
+    list = &((*list) -> next);
     }
-*ins = newNode;
+*list = newNode;
 }
 
 void addNodeBeg(node **list, int data)
@@ -58,17 +56,15 @@ void deleteMatchNode(node **list, int match)
 {
 node **temp = list;
 node **prev = NULL;
-while (*temp != NULL)
+while (*list != NULL)
     {
-    if ((*temp)->member == match)
+    if ((*list)->member == match)
         break;
-    prev = temp;
-    temp = &(*temp)->next;
+    prev = list;
+    list = &(*list)->next;
     }
-node * save = *temp;
-((*prev)->next) = ((*temp)->next);
-printList(*list);
-free(save);
+((*prev)->next) = ((*list)->next);
+free(*list);
 }
 
 int getNth(node * head, int n)
@@ -133,16 +129,69 @@ while (*first != NULL)
     }
 }
 
-insertNth()
+insertNth(node ** head, int pos, int val)
 {
+int i;
+node ** prev;
+for (i=0;i<pos-1 && (*head != NULL);i++)
+    {
+    prev = head;
+    head = &(*head)->next;
+    }
+node * newNode = NULL;
+newNode = malloc (sizeof (node));
+newNode -> member = val;
+newNode -> next = *head; 
+(*prev)->next = newNode;
 }
 
-split()
+void split(node **head, node ** first, node ** second)
 {
+int size = 0, i, mid;
+size = countList(*head);
+printf ("size is %d\n", size); 
+mid = size/2;
+for (i=1;i<=mid;i++)
+    {
+    node * newNode = malloc(sizeof (node));
+    newNode -> member = (*head)->member;
+    if (i == mid)
+        newNode -> next = NULL;
+    else 
+        newNode -> next = (*head)->next;
+    *first = newNode;
+    first = &(*first)->next;
+    head = &(*head)->next;
+    }
+for (i=mid+1;i<=size; i++)
+    {
+    node * newNode = malloc(sizeof (node));
+    newNode -> member = (*head)->member;
+    if (i == size)
+        newNode -> next = NULL;
+    else 
+        newNode -> next = (*head)->next;
+    *second = newNode;
+    second = &(*second)->next;
+    head = &(*head)->next;
+    }
 }
 
-reverse()
+void reverse(node ** head)
 {
+    node* prev   = NULL;
+    node* current = *head;
+    node* next;
+    while (current != NULL)
+    {
+        printf ("bef %p %p %p %p\n", prev, current,current->next, next);
+        next  = current->next;  
+        current->next = prev;   
+        prev = current;
+        current = next;
+        printf ("af %p %p %p %p\n", prev, current, current->next, next);
+    }
+    *head = prev;
 }
 
 node ** findMatchNode (node ** head, int n)
@@ -169,6 +218,10 @@ void sortList (node **list)
 {
 node ** temp = NULL;
 temp = &(*list) -> next;
+}
+
+void sortedInsert (node ** list)
+{
 }
 
 void deleteList (node *list)
