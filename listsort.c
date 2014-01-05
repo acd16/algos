@@ -6,17 +6,22 @@ node * head = NULL;
 node * first = NULL;
 node * second = NULL;
 initializeList (&head, 5);
-addNode(&head, 6);
-addNode(&head, 7);
+addNode(&head, 11);
+insertNth(&head, 3, 7);
 addNode(&head, 8);
-addNode(&head, 9);
-//addNode(&head, 10);
+addNode(&head, 10);
+head = insertSort (&head);
+printList(head);
+/*
+sortedInsert(&head, 9);
+printList(head);
+addNode(&head, 10);
 split (&head, &first, &second);
 printList(head);
 printList(first);
 printList(second);
 reverse(&head);
-printList(head);
+printList(head);*/
 /*printList(head);
 addNodeBeg(&head, 7);
 deleteMatchNode (&head, 6);

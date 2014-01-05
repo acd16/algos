@@ -10,7 +10,6 @@ void initializeList (node **head, int data)
 void printList (node * head)
 {
 node *print = head;
-printf("printing\n");
 while (print != NULL)
     {
     printf ("%d %p \n", print->member, print);
@@ -220,8 +219,38 @@ node ** temp = NULL;
 temp = &(*list) -> next;
 }
 
-void sortedInsert (node ** list)
+void sortedInsert (node **list, int val)
 {
+int count = 0;
+node *temp = *list;
+while (*list != NULL)
+    {
+    count++;
+    if (val <= (*list)->member)
+        {
+        insertNth(&temp, count, val);
+        goto done;
+        }
+    list = &(*list)->next;
+    }
+if (*list == NULL){
+initializeList(list, val);
+    goto done;
+}
+addNode(list, val);
+done: ;
+}
+
+node* insertSort (node **list)
+{
+node* new = NULL;
+while (*list != NULL)
+    {
+    sortedInsert (&new, (*list)->member);
+    list = &(*list)->next;
+    }
+deleteList(*list);
+return new;
 }
 
 void deleteList (node *list)
