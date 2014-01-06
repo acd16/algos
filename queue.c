@@ -1,73 +1,65 @@
 #include "queue.h"
 
-que * front = NULL;
-que * rear = NULL;
-
-void main ()
+void enqueue(que ** q, int val)
 {
-enqueue (5);
-enqueue (6);
-enqueue (7);
-enqueue (8);
-peek();
-deQueue ();
-printQueue();
-peek();
-printQueue();
-enqueue (9);
-peek();
-printQueue();
-}
-
-void enqueue(int val)
-{
-que * newNode = malloc (sizeof (que));
-newNode -> data = val;
+node * newNode = malloc (sizeof (node));
+newNode -> member = val;
 newNode -> next = NULL;
-if (front == NULL)
+if ((*q)->front == NULL)
     {
-    front = newNode;
-    rear = newNode;
+    (*q)->front = newNode;
+    (*q)->rear = newNode;
     }
 else
     {
-    rear -> next = newNode;
-    rear = newNode;
+    (*q)->rear->next = newNode;
+    (*q)->rear = newNode;
     }
-printf("enqueue %p %p\n", front, rear);
+printf("enqueue %p %p %p \n", *q, (*q)->front, (*q)->rear);
 }
 
-void deQueue()
+void printQueue(que * q)
 {
-que * temp = front->next;
-printf ("Deq %d\n", front->data);
-free(front);
-front = temp;
-}
-
-void peek()
-{
-printf ("peek %d \n", front->data);
-}
-
-void delQueue()
-{
-que * temp;
-while (front != NULL)
+///////////////////////////////////////////
+/*que * print = q;
+while (print->front != NULL)
     {
-    temp = front->next;
-    free(front);
-    front = temp;
+    printf ("%d %p\n", print->front->member, print->front);
+    print->front = print->front->next;
+    }
+printf("done %p %p\n", q, q->front);*/
+///////////////////////////////////////////
+node * print = q->front;
+while (print != NULL)
+    {
+    printf ("%d %p\n", print->member, print->next);
+    print = print -> next;
     }
 }
 
-void printQueue()
+void peek(que * q)
 {
-que * temp;
-temp = front;
-while (temp != NULL)
+printf ("peek %d \n", q->front->member);
+}
+
+void deQueue(que ** q)
+{
+node * temp = (*q)->front->next;
+printf ("Deq %d\n", (*q)->front->member);
+free((*q)->front);
+(*q)->front = temp;
+}
+
+void delQueue(que * q)
+{
+node * temp;
+while (q->front != NULL)
     {
-    printf ("%d %p\n", temp -> data, temp);
-    temp = temp -> next;
+    temp = q->front->next;
+    printf("node free %p\n", q->front);
+    free(q->front);
+    q->front = temp;
     }
+printf("queue free %p\n", q);
+free (q);
 }

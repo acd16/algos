@@ -1,14 +1,16 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+#include "llist.h"
+
 typedef struct queue{
-int data;
-struct queue * next;
+node * front;
+node * rear;
 }que;
 
 
-void enqueue(int val);
-void deQueue();
-void peek();
-void delQueue();
-void printQueue();
+void enqueue(que **, int val);
+void deQueue(que**);
+void peek(que*);
+void delQueue(que*);
+void printQueue(que*);

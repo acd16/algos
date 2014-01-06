@@ -53,6 +53,25 @@ newNode -> next = *list;
 
 void deleteMatchNode(node **list, int match)
 {
+/*
+node **temp = list;
+    node **prev = NULL;
+    while (*temp != NULL)
+        {
+            if ((*temp)->member == match)
+                {
+                    printf ("match found\n");
+                    break;
+                }
+            prev = temp;
+            temp = &(*temp) ->next;
+        }
+    printf("gg1 %p %p\n", *temp, *prev);
+    (*prev)->next = (*temp)-> next;
+    printf("gg %p %p\n", *temp, *prev);
+    printList(*list);
+    //free(*temp);
+*/
 node **temp = list;
 node **prev = NULL;
 while (*list != NULL)

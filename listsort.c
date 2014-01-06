@@ -1,4 +1,4 @@
-#include <llist.h>
+#include <queue.h>
 
 void main ()
 {
@@ -12,6 +12,20 @@ addNode(&head, 8);
 addNode(&head, 10);
 head = insertSort (&head);
 printList(head);
+que * test = malloc (sizeof(que));
+enqueue (&test, 5);
+enqueue (&test,6);
+enqueue (&test,7);
+enqueue (&test,8);
+peek(test);
+printQueue(test);
+deQueue (&test);
+peek(test);
+printQueue(test);
+enqueue (&test,9);
+peek(test);
+printQueue(test);
+delQueue(test);
 /*
 sortedInsert(&head, 9);
 printList(head);
