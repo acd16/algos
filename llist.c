@@ -238,6 +238,22 @@ node ** temp = NULL;
 temp = &(*list) -> next;
 }
 
+void pairwiseSort(node ** head)
+{
+int count = 0;
+int temp;
+while(*head != NULL)
+    {
+    count ++;
+    if(count%2 && (*head)->next != NULL)
+        {
+    	temp = (*head)->member;
+    	(*head)->member = (*head)->next->member;
+    	(*head)->next->member = temp;
+    	}
+    head = &(*head)->next;
+    }
+}
 void sortedInsert (node **list, int val)
 {
 int count = 0;

@@ -5,7 +5,7 @@ cleanq:
 	rm -f q
 
 main: clean llist.o queue.o
-	gcc llist.o queue.o listsort.c -I ./ -g -o main
+	gcc llist.o queue.o main.c -I ./ -g -o main
 
 llist.o:
 	gcc -c llist.c -g -I ./
