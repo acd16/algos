@@ -16,3 +16,6 @@ queue.o:
 clean:
 	rm -f llist.o queue.o main
 
+graph: graph.c graph.h
+	gcc graph.c -I ./ -g -o graph
+
