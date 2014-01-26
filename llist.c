@@ -240,20 +240,24 @@ temp = &(*list) -> next;
 
 void pairwiseSort(node ** head)
 {
-int count = 0;
-int temp;
-while(*head != NULL)
+node * current = * head;
+node * prev = NULL;
+while (current !=NULL && current->next !=NULL)
     {
-    count ++;
-    if(count%2 && (*head)->next != NULL)
+    node * temp = current -> next;
+    current -> next = temp-> next;
+    temp->next = current;
+    if (prev!=NULL)
         {
-    	temp = (*head)->member;
-    	(*head)->member = (*head)->next->member;
-    	(*head)->next->member = temp;
-    	}
-    head = &(*head)->next;
+        prev->next = temp;
+        }
+    if(current==*head)
+        *head = temp;
+    prev = current;
+    current=current->next;
     }
 }
+
 void sortedInsert (node **list, int val)
 {
 int count = 0;
