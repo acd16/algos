@@ -7,6 +7,15 @@ void initializeList (node **head, int data)
 (*head)-> next = NULL;
 }
 
+void push(node **head, int n)
+{
+node * newNode = NULL;
+newNode = malloc (sizeof(node));
+newNode -> member = n;
+newNode -> next = *head;
+*head = newNode;
+}
+
 void printList (node * head)
 {
 node *print = head;
@@ -93,33 +102,28 @@ for (i=0;i<n-1;i++)
 return head->member;
 }
 
-void push(node **head, int n)
-{
-node * newNode = NULL;
-newNode = malloc (sizeof(node));
-newNode -> member = n;
-newNode -> next = *head;
-*head = newNode;
-}
-
-void pop(node ** head)
+int pop(node ** head)
 {
 node * temp = NULL;
+int result;
 if (*head == NULL)
     {
     printf("empty list \n");
-    return;
+    return -1;
     }
 if ((*head)->next == NULL)
     {
+    result = (*head)->member;
     free(*head);
     *head = NULL;
-    return;
+    return result;
     }
 temp = *head;
+result = (*head)->member;
 *head = (*head)->next;
 free(temp);
 temp->next = NULL;
+return result;
 }
 
 void join(node ** first, node ** second)

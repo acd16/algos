@@ -16,6 +16,6 @@ queue.o: queue.c queue.h
 clean:
 	rm -f llist.o queue.o main
 
-graph: graph.c graph.h
-	gcc graph.c -I ./ -g -o graph
+graph: graph.c graph.h llist.o
+	gcc llist.o graph.c -I ./ -g -o graph
 

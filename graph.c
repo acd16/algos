@@ -1,4 +1,5 @@
 #include "graph.h"
+#include "llist.h"
 
 void printAdj (edge * edj)
 {
@@ -100,6 +101,31 @@ for (j=0;j<num;j++)
 printf("\n");
 }
 
+void doDfs(nodeList ** graph)
+{
+int * visited = malloc (NUM * sizeof (int)), v;
+node * head = NULL;
+edge * temp = NULL;
+push(&head, 0);
+while(head != NULL)
+    {
+    v = pop(&head);
+    if(visited[v] != 1)
+        {
+        printf ("%d visited \n", v);
+        visited[v] = 1;
+        temp = graph[v]->nodeFirst;
+        while(temp != NULL)
+            {
+            if (temp->dst >= 97)
+                temp->dst -= 97;
+            push(&head, temp->dst);
+            temp = temp->next;
+            }
+        }
+    }
+}
+
 void main ()
 {
 int i = sizeof (nodeList);
@@ -145,5 +171,6 @@ addEdge(&graph1[3], 4, 9);
 addEdge(&graph1[4], 3, 9);
 addEdge(&graph1[4], 5, 10);
 addEdge(&graph1[5], 4, 10);
-dij(graph1, NUM, 0);
+//dij(graph1, NUM, 0);
+doDfs(graph1);
 }
