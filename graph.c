@@ -1,5 +1,5 @@
 #include "graph.h"
-#include "llist.h"
+#include "queue.h"
 
 void printAdj (edge * edj)
 {
@@ -126,6 +126,31 @@ while(head != NULL)
     }
 }
 
+void doBfs(nodeList ** graph)
+{
+int * visited = malloc (NUM * sizeof (int)), v;
+que * head = NULL;
+edge * temp = NULL;
+enqueue(&head, 0);
+while(head != NULL)
+    {
+    v = deQueue(&head);
+    if(visited[v] != 1)
+        {
+        printf ("%d visited \n", v);
+        visited[v] = 1;
+        temp = graph[v]->nodeFirst;
+        while(temp != NULL)
+            {
+            if (temp->dst >= 97)
+                temp->dst -= 97;
+            enqueue(&head, temp->dst);
+            temp = temp->next;
+            }
+        }
+    }
+}
+
 void main ()
 {
 int i = sizeof (nodeList);
@@ -172,5 +197,5 @@ addEdge(&graph1[4], 3, 9);
 addEdge(&graph1[4], 5, 10);
 addEdge(&graph1[5], 4, 10);
 //dij(graph1, NUM, 0);
-doDfs(graph1);
+doBfs(graph1);
 }

@@ -4,7 +4,7 @@
 typedef struct edg {
 char dst;
 int weight;
-struct edge * next;
+struct edg * next;
 }edge;
 
 typedef struct nodeLst{
