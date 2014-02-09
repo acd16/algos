@@ -26,6 +26,17 @@ while (print != NULL)
     }
 }
 
+void printRev (node * head)
+{
+if (head == NULL)
+    return;
+else
+    {
+    printRev(head->next);
+    printf ("%d \n", head->member); 
+    }
+}
+
 int countList (node * head)
 {
 node *tab = head;

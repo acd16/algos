@@ -10,9 +10,7 @@ addNode(&head, 11);
 insertNth(&head, 3, 7);
 addNode(&head, 8);
 addNode(&head, 10);
-printList(head);
-pairwiseSort(&head);
-printList(head);
+printRev(head);
 /*
 head = insertSort (&head);
 que * test = malloc (sizeof(que));
